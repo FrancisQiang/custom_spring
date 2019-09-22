@@ -2,7 +2,7 @@ package com.lgq.spring.bean.parser;
 
 import com.lgq.spring.bean.definition.BeanDefinition;
 import com.lgq.spring.bean.definition.PropertyValue;
-import com.lgq.spring.bean.definition.RuntimeReference;
+import com.lgq.spring.bean.definition.RuntimeBeanReference;
 import com.lgq.spring.bean.definition.TypeStringValue;
 import com.lgq.spring.bean.factory.BeanFactory;
 import com.lgq.spring.bean.factory.DefaultListableFactory;
@@ -46,9 +46,12 @@ public class BeanDefinitionParser {
     String id = element.attributeValue("id");
     // 获取class属性
     String clazz = element.attributeValue("class");
+    // 获取init-method属性
+    String initMethod = element.attributeValue("init-method");
 
     String beanName = id;
     BeanDefinition beanDefinition = new BeanDefinition(beanName, clazz);
+    beanDefinition.setInitMethod(initMethod);
 
     // 获取property子标签
     List<Element> propertyElements = element.elements();
@@ -84,8 +87,8 @@ public class BeanDefinitionParser {
       TypeStringValue typeStringValue = new TypeStringValue(value);
       beanDefinition.getPropertyValueList().add(new PropertyValue(name, typeStringValue));
     } else if (ref != null && !"".equals(ref)) {
-      RuntimeReference runtimeReference = new RuntimeReference(value);
-      beanDefinition.getPropertyValueList().add(new PropertyValue(name, runtimeReference));
+      RuntimeBeanReference runtimeBeanReference = new RuntimeBeanReference(ref);
+      beanDefinition.getPropertyValueList().add(new PropertyValue(name, runtimeBeanReference));
     }
   }
 

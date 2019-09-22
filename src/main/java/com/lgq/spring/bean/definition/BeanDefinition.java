@@ -13,6 +13,8 @@ public class BeanDefinition {
 
   private String beanClassName;
 
+  private String initMethod;
+
   private List<PropertyValue> propertyValueList = new ArrayList<PropertyValue>();
 
   public BeanDefinition(String beanClassName) {
@@ -26,6 +28,14 @@ public class BeanDefinition {
 
   public List<PropertyValue> getPropertyValueList() {
     return propertyValueList;
+  }
+
+  public String getInitMethod() {
+    return initMethod;
+  }
+
+  public void setInitMethod(String initMethod) {
+    this.initMethod = initMethod;
   }
 
   public void setPropertyValueList(

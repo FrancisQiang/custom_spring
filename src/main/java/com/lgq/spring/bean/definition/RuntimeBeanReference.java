@@ -4,11 +4,11 @@ package com.lgq.spring.bean.definition;
  * @author lgq
  * @date 2019-09-21 22:42
  **/
-public class RuntimeReference {
+public class RuntimeBeanReference {
 
   private String refName;
 
-  public RuntimeReference(String refName) {
+  public RuntimeBeanReference(String refName) {
     this.refName = refName;
   }
 
